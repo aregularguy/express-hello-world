@@ -3,7 +3,18 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => res.type('html').send(html));
+app.get("/hello-arshad",(req,res) => {
+  console.log("Hello Arshad from render")
+  const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
 
+    const data = {
+        message: "Today's date",
+        date: formattedDate
+    };
+
+    res.json(data);
+})
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 server.keepAliveTimeout = 120 * 1000;
